@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Performance Metrics Dashboard with Google Charts API and D3.js</title>
+  <!-- Include the Google Charts API library -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script type="text/javascript">
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawCharts);
+
+    // Callback function to draw the charts.
+    function drawCharts() {
+      // Create data for the pie chart.
+      var pieData = google.visualization.arrayToDataTable([
+         ['Performance Category', 'Number of Employees'],
+         ['Excellent', 45],
+         ['Good', 30],
+         ['Average', 15],
+         ['Poor', 10]
+      ]);
+
+      // Create data for the bar chart.
+      var barData = google.visualization.arrayToDataTable([
+        ['Department', 'Number of Employees'],
+        ['Sales', 50],
+        ['Marketing', 40],
+        ['Development', 60],
+        ['HR', 25],
+        ['Finance', 30]
+      ]);
+
+      // Create data for the line chart.
+      var lineData = google.visualization.arrayToDataTable([
+        ['Month', 'Satisfaction Score'],
+        ['January', 7.5],
+        ['February', 7.8],
+        ['March', 8.0],
+        ['April', 7.7],
+        ['May', 8.2],
+        ['June', 8.5],
+        ['July', 8.4],
+        ['August', 8.7],
+        ['September', 9.0],
+        ['October', 8.8],
+        ['November', 9.2],
+        ['December', 9.5]
+      ]);
+
+      // Create options for the pie chart.
+      var pieOptions = {
+        title: 'Employee Performance Distribution',
+        pieHole: 0.5
+      };
+
+      // Create options for the bar chart.
+      var barOptions = {
+        title: 'Number of Employees by Department',
+        legend: { position: 'none' }
+      };
+
+      // Create options for the line chart.
+      var lineOptions = {
+        title: 'Employee Satisfaction Trend',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+      // Instantiate and draw the pie chart and bar chart.
+      var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
+      pieChart.draw(pieData, pieOptions);
+
+      var barChart = new google.visualization.BarChart(document.getElementById('bar-chart'));
+      barChart.draw(barData, barOptions);
+
+      // Instantiate and draw the line chart.
+      var lineChart = new google.visualization.LineChart(document.getElementById('line-chart'));
+      lineChart.draw(lineData, lineOptions);
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 30px;
+    }
+    #charts-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .chart {
+      width: 700px;
+      height: 400px;
+      margin: 12px;
+    }
+    .description {
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Employee Performance Metrics Dashboard</h1>
+  <div id="charts-container">
+    <div class="chart" id="pie-chart"></div>
+    <div class="chart" id="bar-chart"></div>
+    <div class="chart" id="line-chart"></div>
+  </div>
+</body>
+</html>

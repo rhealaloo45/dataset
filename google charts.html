@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Dashboard</title>
+  <!-- Include the Google Charts API library -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Load the Visualization API and the corechart and bar packages.
+    google.charts.load('current', {'packages':['corechart', 'bar']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawCharts);
+
+    // Callback function to draw the charts.
+    function drawCharts() {
+      // Create data for the pie chart (Grade Distribution).
+      var pieData = google.visualization.arrayToDataTable([
+         ['Grade', 'Number of Students'],
+         ['A', 40],
+         ['B', 35],
+         ['C', 20],
+         ['D', 10],
+         ['F', 5]
+      ]);
+
+      // Create data for the bar chart (Subject Performance).
+      var barData = google.visualization.arrayToDataTable([
+        ['Subject', 'Average Score'],
+        ['Math', 85],
+        ['Science', 78],
+        ['English', 92],
+        ['History', 88],
+        ['Art', 95]
+      ]);
+
+      // Create data for the line chart (Performance Over Time).
+      var lineData = google.visualization.arrayToDataTable([
+        ['Month', 'Performance'],
+        ['January', 75],
+        ['February', 80],
+        ['March', 85],
+        ['April', 90],
+        ['May', 95]
+      ]);
+
+      // Create data for attendance bar chart.
+      var attendanceData = google.visualization.arrayToDataTable([
+        ['Student', 'Attendance (%)'],
+        ['John Doe', 95],
+        ['Jane Smith', 89],
+        ['Tom Brown', 76],
+        ['Emily White', 92],
+        ['Michael Black', 85]
+      ]);
+
+      // Create data for assignment submissions line chart.
+      var submissionData = google.visualization.arrayToDataTable([
+        ['Week', 'Submitted', 'Pending'],
+        ['Week 1', 15, 5],
+        ['Week 2', 18, 2],
+        ['Week 3', 20, 0],
+        ['Week 4', 10, 10],
+        ['Week 5', 22, 3]
+      ]);
+
+      // Create data for top performers column chart.
+      var topPerformersData = google.visualization.arrayToDataTable([
+        ['Student', 'Score'],
+        ['Alice Johnson', 98],
+        ['Chris Lee', 96],
+        ['Sophia Wilson', 94],
+        ['James Garcia', 93],
+        ['Olivia Martinez', 91]
+      ]);
+
+      // Create options for the pie chart.
+      var pieOptions = {
+        title: 'Grade Distribution',
+        pieHole: 0.4,
+        legend: { position: 'bottom' }
+      };
+
+      // Create options for the subject performance bar chart.
+      var barOptions = {
+        title: 'Average Scores by Subject',
+        legend: { position: 'none' }
+      };
+
+      // Create options for the performance over time line chart.
+      var lineOptions = {
+        title: 'Student Performance Over Time',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+      // Create options for the attendance bar chart.
+      var attendanceOptions = {
+        title: 'Student Attendance Percentage',
+        legend: { position: 'none' },
+        hAxis: {
+          title: 'Students'
+        },
+        vAxis: {
+          title: 'Attendance (%)'
+        }
+      };
+
+      // Create options for the assignment submissions line chart.
+      var submissionOptions = {
+        title: 'Assignments Submission Over Time',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+      // Create options for the top performers column chart.
+      var topPerformersOptions = {
+        title: 'Top Performers',
+        legend: { position: 'none' }
+      };
+
+      // Instantiate and draw the pie chart.
+      var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
+      pieChart.draw(pieData, pieOptions);
+
+      // Instantiate and draw the subject performance bar chart.
+      var barChart = new google.visualization.BarChart(document.getElementById('bar-chart'));
+      barChart.draw(barData, barOptions);
+
+      // Instantiate and draw the performance over time line chart.
+      var lineChart = new google.visualization.LineChart(document.getElementById('line-chart'));
+      lineChart.draw(lineData, lineOptions);
+
+      // Instantiate and draw the attendance bar chart.
+      var attendanceChart = new google.visualization.BarChart(document.getElementById('attendance-chart'));
+      attendanceChart.draw(attendanceData, attendanceOptions);
+
+      // Instantiate and draw the assignments submission line chart.
+      var submissionChart = new google.visualization.LineChart(document.getElementById('submission-chart'));
+      submissionChart.draw(submissionData, submissionOptions);
+
+      // Instantiate and draw the top performers column chart.
+      var topPerformersChart = new google.visualization.ColumnChart(document.getElementById('top-performers-chart'));
+      topPerformersChart.draw(topPerformersData, topPerformersOptions);
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 30px;
+    }
+    #charts-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .chart {
+      width: 700px;
+      height: 400px;
+      margin: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Performance Dashboard</h1>
+  <div id="charts-container">
+    <div class="chart" id="pie-chart"></div>
+    <div class="chart" id="bar-chart"></div>
+    <div class="chart" id="line-chart"></div>
+    <div class="chart" id="attendance-chart"></div>
+    <div class="chart" id="submission-chart"></div>
+    <div class="chart" id="top-performers-chart"></div>
+  </div>
+</body>
+</html>
